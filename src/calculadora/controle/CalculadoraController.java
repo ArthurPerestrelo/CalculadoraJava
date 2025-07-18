@@ -12,23 +12,29 @@ public class CalculadoraController {
         total = 0.0;
     }
     public Double realizaOperacao(EnumOperacao operacao, Double valor) {
-        if (valor == null || operacao == null) {
-            return total;
-        }
-        switch (operacao) {
-            case SOMA -> total += valor;
-            case SUBTRACAO -> total -= valor;
-            case MULTIPLICAO -> total *= valor;
-            case DIVISAO -> {
-                if (valor == 0) {
-                    System.out.println("Erro: divisão por zero.");
-                    return total;
-                }
-                total /= valor;
-            }
-        }
+    if (valor == null || operacao == null) {
         return total;
     }
+    
+    if (total == 0) {
+        total = valor;
+        return total;
+    }
+    
+    switch (operacao) {
+        case SOMA -> total += valor;
+        case SUBTRACAO -> total -= valor;
+        case MULTIPLICAO -> total *= valor;
+        case DIVISAO -> {
+            if (valor == 0) {
+                System.out.println("Erro: divisão por zero.");
+                return total;
+            }
+            total /= valor;
+        }
+    }
+    return total;
+}
     
     public Double getTotal() {
         return this.total;
